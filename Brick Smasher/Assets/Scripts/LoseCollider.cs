@@ -4,9 +4,14 @@ using UnityEngine.UI;
 
 public class LoseCollider : MonoBehaviour {
 
-	public LevelManager levelManager;
+	private LevelManager levelManager;
 	public Text texts;
+	public Text life;
 	private string lives = "3";
+
+	void Start(){
+		levelManager = GameObject.FindObjectOfType<LevelManager> ();
+	}
 
 	void Update() {
 		texts.text = lives;
@@ -22,8 +27,10 @@ public class LoseCollider : MonoBehaviour {
 			lives = "2";
 		} else if (lives == "2") {
 			lives = "1";
+			life.text = "Life";
 		} else if (lives == "1") {
 			lives = "0";
+			life.text = "Lives";
 		}
 
 	}

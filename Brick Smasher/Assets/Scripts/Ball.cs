@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 public class Ball : MonoBehaviour {
 
-    public Paddle paddle;
+	private Paddle paddle;
     public Text txt;
     private Vector3 paddleToBall;
     private bool start = false;
@@ -12,7 +12,8 @@ public class Ball : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         
-        paddleToBall = this.transform.position - paddle.transform.position; 
+		paddle = GameObject.FindObjectOfType<Paddle> ();
+        paddleToBall = this.transform.position - paddle.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +33,7 @@ public class Ball : MonoBehaviour {
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 15f);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(4f, 15f);
                     start = true;
                 }
             }
