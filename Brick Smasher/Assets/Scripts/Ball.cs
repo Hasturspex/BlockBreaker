@@ -27,20 +27,27 @@ public class Ball : MonoBehaviour {
             start = false;
             change2 = true;
         }
-            if(!start)
+        if (!start)
+        {
+            this.transform.position = paddle.transform.position + paddleToBall;
+
+            if (Input.GetMouseButtonDown(0))
             {
-                this.transform.position = paddle.transform.position + paddleToBall;
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(4f, 13f);
-                    start = true;
-                }
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(4f, 13f);
+                start = true;
             }
-            
-          
-
+        }
 	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+
+
+        if(start)
+            GetComponent<AudioSource>().Play();
+            Vector2 velocityTweak = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+            GetComponent<Rigidbody2D>().velocity += velocityTweak;
+    }
 
 
 }
